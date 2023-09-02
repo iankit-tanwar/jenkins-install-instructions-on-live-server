@@ -1,0 +1,39 @@
+sudo apt update
+sudo apt upgrade -y
+sudo apt install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+sudo docker pull jenkins/jenkins:lts
+
+sudo mkdir -p /var/jenkins_home
+sudo chown 1000:1000 /var/jenkins_home
+sudo chown -R 1000:1000 /var/jenkins_home
+
+
+sudo docker run -d -p 8080:8080 -p 50000:50000 -v /var/jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins:lts
+
+
+http://your_server_ip:8080
+
+
+
+sudo docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+
+sudo docker logs jenkins
+
+
+sudo systemctl status docker
+
+sudo systemctl start docker
+sudo systemctl enable docker
+
+sudo systemctl restart docker
+------------------------------------------------------------------------------------------------------------------------
+
